@@ -21,8 +21,13 @@ public class UserController {
     public User registerUser(
             @Valid @RequestBody UserRegistrationRequest request) {
 
+        System.out.println(request);
+
         return userService.registerUser(request);
     }
+
+
+
 }
 
 

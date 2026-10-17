@@ -5,6 +5,9 @@ import com.shashi.foodOrdering.dto.LoginRequest;
 import com.shashi.foodOrdering.dto.UserRegistrationRequest;
 import com.shashi.foodOrdering.dto.UserResponse;
 import com.shashi.foodOrdering.entity.User;
+import com.shashi.foodOrdering.exception.InvalidCredentialsException;
+import com.shashi.foodOrdering.exception.UserAlreadyExistsException;
+import com.shashi.foodOrdering.exception.UserNotFoundException;
 import com.shashi.foodOrdering.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,20 +27,16 @@ public class UserService {
     // save the registration into the db
     public UserResponse registerUser(UserRegistrationRequest request) {
 
-        if (userRepository
-                .existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmail(request.getEmail())) {
 
-            throw new RuntimeException(
-                    "Already User Exist");
+            throw new UserAlreadyExistsException("Email Already Registered");
         }
 
         User user = new User();
 
         user.setName(request.getName());
         user.setEmail(request.getEmail());
-        user.setPassword(
-                passwordEncoder.encode(request.getPassword())
-        );
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhone(request.getPhone());
 
 //        System.out.println("Inside the service " + user );
@@ -58,7 +57,7 @@ public class UserService {
         User user = userRepository
                 .findByEmail(request.getEmail())
                 .orElseThrow(() ->
-                        new RuntimeException("User not found"));
+                        new UserNotFoundException("User not Found"));
 
         boolean isValidPassword =
                 passwordEncoder.matches(
@@ -66,7 +65,7 @@ public class UserService {
                         user.getPassword());
 
         if (!isValidPassword) {
-            throw new RuntimeException("Invalid Password");
+            throw new InvalidCredentialsException("Invalid Email or Password");
         }
 
         return "Login Successful";

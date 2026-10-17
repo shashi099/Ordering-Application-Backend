@@ -46,4 +46,30 @@
 * ✅ Dependency Injection
 * ✅ PostgreSQL Integration
 
+## Refactor project like a real production-grade Spring Boot application
 
+* ✅ Custom Exceptions
+* ✅ Global Exception Handler
+* ✅ Common API Response Format
+* ✅ Proper HTTP Status Codes
+* ✅ Better Error Messages
+
+#### Old Flow -> New Flow
+
+`Service -> RuntimeException -> Spring Default Error Response`
+
+`Service -> Custom Exception -> Global Exception Handler -> Standard API Response`
+
+### Create Standard API Response
+`dto
+└── ApiResponse.java`
+
+**Architecture After Refactoring**
+
+Controller -> Service -> Repository -> Database -> Exceptions -> GlobalExceptionHandler -> ApiResponse
+
+* ✅ Production-ready response format
+* ✅ Reusable exception handling
+* ✅ Proper status codes
+* ✅ Clean service code
+* ✅ No RuntimeException everywhere

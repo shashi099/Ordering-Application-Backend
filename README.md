@@ -21,3 +21,29 @@
 * POST APIs
 * RequestBody
 * Validation
+
+
+-------------------------
+### **NEXT STEP** 
+* ✅ Check duplicate email 
+* ✅ Password Encryption (BCrypt)
+* ✅ Login API
+* ✅ Find User by Email
+* ✅ Custom Repository Methods
+* ✅ Response DTO
+* ✅ Clean API Responses
+
+#### And now we have IMPLEMENTED:
+
+* ✅ User Registration
+* ✅ Email Validation
+* ✅ Duplicate Email Check
+* ✅ Password Encryption
+* ✅ Login API
+* ✅ Custom Repository Methods
+* ✅ Request DTO
+* ✅ Response DTO
+* ✅ Dependency Injection
+* ✅ PostgreSQL Integration
+
+

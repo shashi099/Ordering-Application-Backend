@@ -1,6 +1,8 @@
 package com.shashi.foodOrdering.controller;
 
+import com.shashi.foodOrdering.dto.LoginRequest;
 import com.shashi.foodOrdering.dto.UserRegistrationRequest;
+import com.shashi.foodOrdering.dto.UserResponse;
 import com.shashi.foodOrdering.entity.User;
 import com.shashi.foodOrdering.service.UserService;
 import jakarta.validation.Valid;
@@ -18,12 +20,20 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User registerUser(
+    public UserResponse registerUser(
             @Valid @RequestBody UserRegistrationRequest request) {
 
-        System.out.println(request);
+        System.out.println("Inside the controller " + request);
 
         return userService.registerUser(request);
+    }
+
+    @PostMapping("/login")
+    public String login(
+            @Valid
+            @RequestBody LoginRequest request) {
+        System.out.println("Shashi singh");
+        return userService.login(request);
     }
 
 

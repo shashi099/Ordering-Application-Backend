@@ -22,7 +22,17 @@ public class User {
 
     private String phone;
 
-//    public String getName() {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
+
+    //    public String getName() {
 //        return name;
 //    }
 //

@@ -77,7 +77,18 @@ Controller -> Service -> Repository -> Database -> Exceptions -> GlobalException
 
 # Restaurant Management Module
 
+* Restaurant Entity
+* Restaurant DTOs
+* Restaurant Repository
+* Restaurant Service
+* Restaurant Controller
 
+
+* POST /restaurants
+* GET /restaurants
+* GET /restaurants/{id}
+* PUT /restaurants/{id}
+* DELETE /restaurants/{id}
 
 
 

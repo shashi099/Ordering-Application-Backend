@@ -92,4 +92,16 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
+    // Restaurant Not Found 404
+    @ExceptionHandler(RestaurantNotFoundException.class)
+    public ApiResponse<?> restaurantNotFound(RestaurantNotFoundException ex){
+
+        return ApiResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .data(null)
+                .build();
+
+    }
 }

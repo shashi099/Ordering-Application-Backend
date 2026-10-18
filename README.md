@@ -73,3 +73,15 @@ Controller -> Service -> Repository -> Database -> Exceptions -> GlobalException
 * ✅ Proper status codes
 * ✅ Clean service code
 * ✅ No RuntimeException everywhere
+
+
+# Restaurant Management Module
+
+
+
+
+
+
+
+
+

@@ -104,4 +104,15 @@ public class GlobalExceptionHandler {
                 .build();
 
     }
+
+    // Menu Item Not Found Exception
+    @ExceptionHandler(MenuItemNotFoundException.class)
+    public ApiResponse<?> menuNotFound(MenuItemNotFoundException ex){
+
+        return ApiResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .data(null)
+                .build();
+    }
 }

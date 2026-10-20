@@ -65,7 +65,7 @@ public class RestaurantService {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException("restaurant not found"));
 
-        restaurant.setRestaurant_id(id);
+        restaurant.setRestaurantId(id);
         restaurant.setRestaurant_name(request.getName());
         restaurant.setRestaurant_address(request.getRestaurant_address());
         restaurant.setRestaurant_image(restaurant.getRestaurant_image());
@@ -89,7 +89,7 @@ public class RestaurantService {
     public RestaurantResponse mapToResponse(Restaurant restaurant){
 
         return RestaurantResponse.builder()
-                .restaurant_id(restaurant.getRestaurant_id())
+                .restaurant_id(restaurant.getRestaurantId())
                 .restaurant_name(restaurant.getRestaurant_name())
                 .restaurant_address(restaurant.getRestaurant_address())
                 .restaurant_rating(restaurant.getRestaurant_rating())

@@ -91,15 +91,23 @@ Controller -> Service -> Repository -> Database -> Exceptions -> GlobalException
 * DELETE /restaurants/{id}
 
 
-# Cart Management
-Customer selects food.
+# Menu Management
 
-**Cart**
-----
-* id
-* user_id
-* menu_item_id
-* quantity
+Each restaurants has menu items:
+
+
+**Menu_Items**
+----------
+
+#### Database
+
+* menuId
+* restaurant_id
+* food_name
+* price
+* description
+* image
+
 
 
 

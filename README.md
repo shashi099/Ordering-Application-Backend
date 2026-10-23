@@ -108,9 +108,26 @@ Each restaurants has menu items:
 * description
 * image
 
+# Cart Management
+
+**User Can**
+
+* ✅ Add item to cart
+* ✅ View cart
+* ✅ Update quantity
+* ✅ Remove item
+* ✅ Clear cart
+* ✅ Calculate total amount
 
 
+**Create Cart Entity**
 
+**cart**
+1. id
+2. user_id
+3. menu_item_id
+4. quantity
 
+User ------ Cart ------ MenuItem
 
 

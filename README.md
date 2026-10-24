@@ -128,6 +128,10 @@ Each restaurants has menu items:
 3. menu_item_id
 4. quantity
 
-User ------ Cart ------ MenuItem
+###### User ------ Cart ------ MenuItem
+
+**Meaning:**
+1. One User can have many Cart Items
+2. One MenuItem can appear in many carts
 
 

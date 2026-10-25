@@ -134,4 +134,13 @@ Each restaurants has menu items:
 1. One User can have many Cart Items
 2. One MenuItem can appear in many carts
 
-
+**Now Current Scenario**
+* ✅ Cart Entity
+* ✅ Cart Repository
+* ✅ Custom Finder Methods
+* ✅ AddToCartRequest DTO
+* ✅ CartService
+* ✅ CartController
+* ✅ POST /cart/add
+* ✅ Duplicate Cart Prevention
+* ✅ Quantity Auto Increment

@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/restaurants")
+@CrossOrigin
 public class MenuItemController {
 
     private final MenuItemService menuItemService;

@@ -23,6 +23,8 @@ public class RestaurantService {
     // Admin create the restaurant
     public RestaurantResponse createRestaurant(RestaurantRequest request){
 
+        // Check whether the restaurant is already exist -> CODE PENDING
+
         Restaurant restaurant = new Restaurant();
 
         restaurant.setRestaurant_name(request.getName());

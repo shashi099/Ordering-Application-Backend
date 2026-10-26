@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
@@ -41,19 +42,20 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(
+    public ResponseEntity<ApiResponse<User>> login(
             @Valid
             @RequestBody LoginRequest request) {
 
         System.out.println("Shashi singh data is coming");
 
-        String response = userService.login(request);
+        // Assuming userService.login(request) returns the authenticated User entity/DTO
+        User loggedInUser = userService.login(request);
 
-        return ResponseEntity.status(HttpStatus.FOUND).body(
-                ApiResponse.<String>builder()
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<User>builder()
                         .success(true)
-                        .message("User Login Successfully")
-                        .data(response)
+                        .message("User Login- Successful")
+                        .data(loggedInUser) // <--- Pass the actual user object here!
                         .build()
         );
     }

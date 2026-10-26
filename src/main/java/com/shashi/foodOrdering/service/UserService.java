@@ -52,7 +52,7 @@ public class UserService {
     }
 
     // login the user
-    public String login(LoginRequest request) {
+    public User login(LoginRequest request) {
 
         User user = userRepository
                 .findByEmail(request.getEmail())
@@ -68,7 +68,7 @@ public class UserService {
             throw new InvalidCredentialsException("Invalid Email or Password");
         }
 
-        return "Login Successful";
+        return user;
     }
 
 

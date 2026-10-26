@@ -144,3 +144,16 @@ Each restaurants has menu items:
 * ✅ POST /cart/add
 * ✅ Duplicate Cart Prevention
 * ✅ Quantity Auto Increment
+
+**Cart Module Progress**
+
+* ✅ Cart Entity
+* ✅ Cart Repository
+* ✅ Add To Cart API
+* ✅ Prevent Duplicate Items
+* ✅ Get User Cart API
+* ✅ Cart Item DTO
+* ✅ Cart Response DTO
+* ✅ Total Amount Calculation
+* ✅ Subtotal Calculation
+

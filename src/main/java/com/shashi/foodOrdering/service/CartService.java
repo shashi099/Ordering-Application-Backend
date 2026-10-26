@@ -2,6 +2,8 @@ package com.shashi.foodOrdering.service;
 
 import com.shashi.foodOrdering.dto.AddToCartRequest;
 import com.shashi.foodOrdering.dto.AddToCartResponse;
+import com.shashi.foodOrdering.dto.CartItemResponse;
+import com.shashi.foodOrdering.dto.CartResponse;
 import com.shashi.foodOrdering.entity.Cart;
 import com.shashi.foodOrdering.entity.MenuItem;
 import com.shashi.foodOrdering.entity.User;
@@ -13,6 +15,8 @@ import com.shashi.foodOrdering.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -77,4 +81,41 @@ public class CartService {
                 .build();
     }
 
+    // All carts of a User
+    public CartResponse getUserCartItems(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("User Not Found While Searching for getUserCartItems"));
+
+        List<Cart> carts = cartRepository.findByUser(user);
+
+        // Basically we are returning the reponses in Better way
+        // By the way we can return the carts itself
+        // Here we are refining the particular field that we need
+
+        List<CartItemResponse> itemResponses = new ArrayList<>();
+
+        double totalAmount = 0.0;
+
+        for (Cart cart: carts) {
+
+            MenuItem menuItem = cart.getMenuItem();
+
+            double subTotal = menuItem.getItem_price() * cart.getQuantity();
+
+            totalAmount += subTotal;
+
+            CartItemResponse eachCartItem = new CartItemResponse(
+                    menuItem.getMenuId(),
+                    menuItem.getItem_name(),
+                    menuItem.getItem_price(),
+                    cart.getQuantity(),
+                    subTotal
+            );
+
+            itemResponses.add(eachCartItem);
+        }
+
+        return new CartResponse(itemResponses, totalAmount);
+    }
 }

@@ -136,4 +136,12 @@ public class CartService {
 
         return savedCart;
     }
+
+    public void removeCartItem(Long cartId) {
+
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(()-> new CartNotFoundException("Cart 404 during Deletion"));
+
+        cartRepository.delete(cart);
+    }
 }

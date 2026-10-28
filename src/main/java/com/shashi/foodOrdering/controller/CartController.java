@@ -79,4 +79,20 @@ public class CartController {
         );
     }
 
+    // ✅ Remove specific food item from cart
+    @DeleteMapping("/remove/{cartId}")
+    public ResponseEntity<ApiResponse<?>> deleteCart(@PathVariable Long cartId){
+
+        cartService.removeCartItem(cartId);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(
+                        ApiResponse.<Void>builder()
+                                .success(true)
+                                .message("Item Deleted Successfully")
+                                .data(null)
+                                .build()
+                );
+    }
+
+    //
 }

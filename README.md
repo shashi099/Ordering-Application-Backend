@@ -163,3 +163,14 @@ Each restaurants has menu items:
 * ✅ Update Quantity API
 * ✅ Quantity Validation
 * ✅ DTO-Based Request Handling
+
+**Cart Module Progress**
+
+* ✅ Cart Entity
+* ✅ Cart Repository
+* ✅ Add To Cart API
+* ✅ Get User Cart API
+* ✅ Calculate Total Amount
+* ✅ Update Quantity API
+* ✅ Quantity Validation
+* ✅ Remove Single Cart Item API

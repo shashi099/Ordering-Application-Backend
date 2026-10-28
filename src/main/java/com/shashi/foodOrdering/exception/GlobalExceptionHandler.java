@@ -115,4 +115,25 @@ public class GlobalExceptionHandler {
                 .data(null)
                 .build();
     }
+
+    // Cart Not Found Exception
+    @ExceptionHandler(CartNotFoundException.class)
+    public ApiResponse<?> cartNotFound(CartNotFoundException ex){
+        return ApiResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .data(null)
+                .build();
+    }
+
+    // Cart When Quantity 0 or <= 0
+    @ExceptionHandler(CartQuantityException.class)
+    public ApiResponse<?> quantityMustGreaterThanZero(CartQuantityException ex){
+        return ApiResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .data(null)
+                .build();
+    }
+
 }

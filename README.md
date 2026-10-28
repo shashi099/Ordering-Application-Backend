@@ -157,3 +157,9 @@ Each restaurants has menu items:
 * ✅ Total Amount Calculation
 * ✅ Subtotal Calculation
 
+**Cart Module Progress**
+
+* ✅ Calculate Total Amount
+* ✅ Update Quantity API
+* ✅ Quantity Validation
+* ✅ DTO-Based Request Handling

@@ -1,12 +1,11 @@
 package com.shashi.foodOrdering.service;
 
-import com.shashi.foodOrdering.dto.AddToCartRequest;
-import com.shashi.foodOrdering.dto.AddToCartResponse;
-import com.shashi.foodOrdering.dto.CartItemResponse;
-import com.shashi.foodOrdering.dto.CartResponse;
+import com.shashi.foodOrdering.dto.*;
 import com.shashi.foodOrdering.entity.Cart;
 import com.shashi.foodOrdering.entity.MenuItem;
 import com.shashi.foodOrdering.entity.User;
+import com.shashi.foodOrdering.exception.CartNotFoundException;
+import com.shashi.foodOrdering.exception.CartQuantityException;
 import com.shashi.foodOrdering.exception.MenuItemNotFoundException;
 import com.shashi.foodOrdering.exception.UserNotFoundException;
 import com.shashi.foodOrdering.repository.CartRepository;
@@ -117,5 +116,24 @@ public class CartService {
         }
 
         return new CartResponse(itemResponses, totalAmount);
+    }
+
+    // Cart Quantity update ho raha hai ..............
+    public Cart updateCartQuantity(Long cartId, UpdateQuantityRequest request) {
+
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(()-> new CartNotFoundException("Cart Not Found!!"));
+
+        System.out.println(cart);
+
+        if(request.getQuantity() <= 0){
+            throw new CartQuantityException("Quantity Should be more than 0 ");
+        }
+
+        cart.setQuantity(request.getQuantity());
+
+        Cart savedCart = cartRepository.save(cart);
+
+        return savedCart;
     }
 }

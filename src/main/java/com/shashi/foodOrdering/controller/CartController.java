@@ -1,10 +1,7 @@
 package com.shashi.foodOrdering.controller;
 
 
-import com.shashi.foodOrdering.dto.AddToCartRequest;
-import com.shashi.foodOrdering.dto.AddToCartResponse;
-import com.shashi.foodOrdering.dto.ApiResponse;
-import com.shashi.foodOrdering.dto.CartResponse;
+import com.shashi.foodOrdering.dto.*;
 import com.shashi.foodOrdering.entity.Cart;
 import com.shashi.foodOrdering.service.CartService;
 import jakarta.validation.Valid;
@@ -60,4 +57,26 @@ public class CartController {
                         .build()
         );
     }
+
+    // Update the Cart
+    @PutMapping("/update/{cartId}")
+    public ResponseEntity<ApiResponse<Cart>> updateCartQuantity(
+            @PathVariable Long cartId,
+            @RequestBody UpdateQuantityRequest request){
+
+        System.out.println("Pahuch paye ho");
+
+        Cart cart = cartService.updateCartQuantity(cartId, request);
+
+        System.out.println("Are you here or not");
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(
+                ApiResponse.<Cart>builder()
+                        .success(true)
+                        .message("Cart Updated Successfully")
+                        .data(cart)
+                        .build()
+        );
+    }
+
 }

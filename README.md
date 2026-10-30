@@ -174,3 +174,12 @@ Each restaurants has menu items:
 * ✅ Update Quantity API
 * ✅ Quantity Validation
 * ✅ Remove Single Cart Item API
+
+
+# Module 5: Order Management
+
+* ✅ Order Entity
+* ✅ OrderStatus Enum
+* ✅ Entity Relationships
+* ✅ Database Design
+* ✅ Order Creation Flow Design

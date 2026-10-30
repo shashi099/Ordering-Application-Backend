@@ -19,12 +19,15 @@ public class RestaurantController {
         this.restaurantService = restaurantService;
     }
 
+    // Register new restaurant
     @PostMapping()
     public ApiResponse<RestaurantResponse> registerRestaurant(@Valid @RequestBody RestaurantRequest request){
 
+        System.out.println("Kyaaaa " + request.getRestaurantName() + " " + request.getRestaurantRating());
+
         RestaurantResponse response = restaurantService.createRestaurant(request);
 
-        System.out.println(request);
+        System.out.println(request + " " + response);
 
         return ApiResponse.<RestaurantResponse>builder()
                 .success(true)
@@ -77,7 +80,7 @@ public class RestaurantController {
     // Delete Particular Restaurants
     @DeleteMapping("/{id}")
     public ApiResponse<Void> deleteRestaurant(@PathVariable Long id){
-
+        System.out.println("IDDDD " + id);
         restaurantService.deleteRestaurant(id);
         return ApiResponse.<Void>builder()
                 .success(true)

@@ -9,20 +9,21 @@ import lombok.Setter;
 public class RestaurantRequest {
 
     @NotBlank(message = "Restaurant name Required")
-    private String name;
+    private String restaurantName;
     @NotBlank
-    private String restaurant_address;
+    private String restaurantAddress;
 
-    private String restaurant_image;
+    private String restaurantImage;
 
-    private Double restaurant_rating;
+    private Double restaurantRating;
 
     @Override
     public String toString() {
         return "RestaurantRequest{" +
-                "name='" + name + '\'' +
-                ", restaurant_address='" + restaurant_address + '\'' +
-                ", restaurant_image='" + restaurant_image + '\'' +
+                "name='" + restaurantName + '\'' +
+                ", restaurantAddress='" + restaurantAddress + '\'' +
+                ", restaurantImage='" + restaurantImage + '\'' +
+                ", restaurantRating=" + restaurantRating +
                 '}';
     }
 }

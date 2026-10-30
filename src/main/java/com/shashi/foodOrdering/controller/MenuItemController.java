@@ -58,4 +58,22 @@ public class MenuItemController {
         );
     }
 
+    // Deletion of a particular menu item
+    @DeleteMapping("{restaurantId}/{menuItemId}")
+    public ResponseEntity<ApiResponse<Void>> deleteMenuItem(
+            @PathVariable Long restaurantId,
+            @PathVariable Long menuItemId){
+
+        System.out.println("Hello " + menuItemId + restaurantId);
+        menuItemService.removeOneItem(menuItemId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<Void>builder()
+                        .success(true)
+                        .message("menu item deleted successfully")
+                        .data(null)
+                        .build()
+        );
+    }
+
 }

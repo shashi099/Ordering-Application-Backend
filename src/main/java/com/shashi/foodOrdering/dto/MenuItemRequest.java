@@ -10,19 +10,19 @@ import lombok.Setter;
 public class MenuItemRequest {
 
     @NotBlank(message = "Item name Required")
-    private String item_name;
-    private String item_description;
+    private String foodName;
+    private String description;
     @NotNull
-    private Double item_price;
-    private Boolean item_available;
+    private Double price;
+    private Boolean available;
 
     @Override
     public String toString() {
         return "MenuItemRequest{" +
-                "item_name='" + item_name + '\'' +
-                ", item_description='" + item_description + '\'' +
-                ", item_price=" + item_price +
-                ", item_available=" + item_available +
+                "foodName='" + foodName + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", available=" + available +
                 '}';
     }
 }

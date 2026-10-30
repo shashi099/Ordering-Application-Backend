@@ -7,11 +7,11 @@ import lombok.Getter;
 @Builder
 public class MenuItemResponse {
 
-    private Long menuId;
-    private String item_name;
-    private String item_description;
-    private Double item_price;
-    private Boolean item_available;
+    private Long menuItemId;
+    private String foodName;
+    private String description;
+    private Double price;
+    private Boolean available;
 
     private Long restaurantId;
     private String restaurantName;

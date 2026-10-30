@@ -11,6 +11,7 @@ import com.shashi.foodOrdering.exception.UserNotFoundException;
 import com.shashi.foodOrdering.repository.CartRepository;
 import com.shashi.foodOrdering.repository.MenuItemRepository;
 import com.shashi.foodOrdering.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,8 +87,8 @@ public class CartService {
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new UserNotFoundException("User Not Found While Searching for getUserCartItems"));
 
-        List<Cart> carts = cartRepository.findByUser(user);
-
+//        List<Cart> carts = cartRepository.findByUser(user);
+          List<Cart> carts = cartRepository.findByUserOrderByCartIdAsc(user);
         // Basically we are returning the reponses in Better way
         // By the way we can return the carts itself
         // Here we are refining the particular field that we need
@@ -100,14 +101,15 @@ public class CartService {
 
             MenuItem menuItem = cart.getMenuItem();
 
-            double subTotal = menuItem.getItem_price() * cart.getQuantity();
+            double subTotal = menuItem.getPrice() * cart.getQuantity();
 
             totalAmount += subTotal;
 
             CartItemResponse eachCartItem = new CartItemResponse(
-                    menuItem.getMenuId(),
-                    menuItem.getItem_name(),
-                    menuItem.getItem_price(),
+                    menuItem.getMenuItemId(),
+                    cart.getCartId(),
+                    menuItem.getFoodName(),
+                    menuItem.getPrice(),
                     cart.getQuantity(),
                     subTotal
             );
@@ -143,5 +145,17 @@ public class CartService {
                 .orElseThrow(()-> new CartNotFoundException("Cart 404 during Deletion"));
 
         cartRepository.delete(cart);
+    }
+
+    @Transactional
+    public String deleteAllCartItems(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(()-> new UserNotFoundException("User 404"));
+
+        System.out.println("Pahuch paye ho");
+        cartRepository.deleteByUser(user);
+
+        return "Cart Cleared Successfully";
     }
 }

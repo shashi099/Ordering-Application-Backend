@@ -8,10 +8,10 @@ import lombok.Setter;
 @Builder
 public class RestaurantResponse {
 
-    private Long restaurant_id;
-    private String restaurant_name;
-    private String restaurant_address;
-    private Double restaurant_rating;
-    private String restaurant_image;
+    private Long restaurantId;
+    private String restaurantName;
+    private String restaurantAddress;
+    private Double restaurantRating;
+    private String restaurantImage;
 
 }

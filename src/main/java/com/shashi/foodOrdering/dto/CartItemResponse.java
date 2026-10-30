@@ -11,6 +11,8 @@ public class CartItemResponse {
 
     private Long menuItemId;
 
+    private  Long cartId;
+
     private String foodName;
 
     private Double price;

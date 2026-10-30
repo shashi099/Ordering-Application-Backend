@@ -34,10 +34,10 @@ public class MenuItemService {
 
         MenuItem item = new MenuItem();
 
-        item.setItem_name(request.getItem_name());
-        item.setItem_description(request.getItem_description());
-        item.setItem_price(request.getItem_price());
-        item.setItem_available(request.getItem_available());
+        item.setFoodName(request.getFoodName());
+        item.setDescription(request.getDescription());
+        item.setPrice(request.getPrice());
+        item.setAvailable(request.getAvailable());
 
         item.setRestaurant(restaurant);
 
@@ -58,17 +58,22 @@ public class MenuItemService {
     private MenuItemResponse mapToResponse(MenuItem item){
 
         return MenuItemResponse.builder()
-                .menuId(item.getMenuId())
-                .item_name(item.getItem_name())
-                .item_description(item.getItem_description())
-                .item_price(item.getItem_price())
-                .item_available(item.getItem_available())
+                .menuItemId(item.getMenuItemId())
+                .foodName(item.getFoodName())
+                .description(item.getDescription())
+                .price(item.getPrice())
+                .available(item.getAvailable())
                 .restaurantId(item.getRestaurant()
                         .getRestaurantId())
                 .restaurantName(item.getRestaurant()
-                        .getRestaurant_name())
+                        .getRestaurantName())
                 .build();
     }
 
 
+    public void removeOneItem(Long menuItemId) {
+
+        menuItemRepository.deleteById(menuItemId);
+
+    }
 }

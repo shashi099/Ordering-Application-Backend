@@ -12,8 +12,8 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
 
     //Finding cart items of a user
-    List<Cart> findByUser(User user);
-
+//    List<Cart> findByUser(User user);
+    List<Cart> findByUserOrderByCartIdAsc(User user);
     //Checking whether a menu item already exists in the user's cart
     Optional<Cart> findByUserAndMenuItem(User user,
                                          MenuItem menuItem);

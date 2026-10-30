@@ -94,5 +94,19 @@ public class CartController {
                 );
     }
 
-    //
+    // ✅ Clear Entire Cart API
+    //✅ Remove all cart items of a user
+    @DeleteMapping("/clear/{userId}")
+    public ResponseEntity<ApiResponse<String>> clearCart(@PathVariable Long userId){
+        System.out.println(userId);
+        String response = cartService.deleteAllCartItems(userId);
+        System.out.println(response + " dfdfdf");
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.<String>builder()
+                        .success(true)
+                        .message("Clear Cart Successfully")
+                        .data(response)
+                        .build()
+        );
+    }
 }

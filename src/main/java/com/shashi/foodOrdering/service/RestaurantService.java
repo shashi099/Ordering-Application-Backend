@@ -5,6 +5,7 @@ import com.shashi.foodOrdering.dto.RestaurantResponse;
 import com.shashi.foodOrdering.entity.Restaurant;
 import com.shashi.foodOrdering.exception.RestaurantNotFoundException;
 import com.shashi.foodOrdering.repository.RestaurantRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 
@@ -27,15 +28,15 @@ public class RestaurantService {
 
         Restaurant restaurant = new Restaurant();
 
-        restaurant.setRestaurant_name(request.getName());
-        restaurant.setRestaurant_address(request.getRestaurant_address());
-        restaurant.setRestaurant_image(
-                (request.getRestaurant_image() == null || request.getRestaurant_image().trim().isEmpty())
+        restaurant.setRestaurantName(request.getRestaurantName());
+        restaurant.setRestaurantAddress(request.getRestaurantAddress());
+        restaurant.setRestaurantImage(
+                (request.getRestaurantImage() == null || request.getRestaurantImage().trim().isEmpty())
                         ? "https://img.magnific.com/free-photo/restaurant-interior_1127-3394.jpg?semt=ais_hybrid&w=740&q=80"
-                        : request.getRestaurant_image()
+                        : request.getRestaurantImage()
         );
-        restaurant.setRestaurant_rating(request.getRestaurant_rating());
-        System.out.println("Rating " + request.getRestaurant_rating());
+        restaurant.setRestaurantRating(request.getRestaurantRating());
+        System.out.println("Rating " + request.getRestaurantRating());
 
 
         Restaurant savedRestaurant = restaurantRepository.save(restaurant);
@@ -68,9 +69,9 @@ public class RestaurantService {
                 .orElseThrow(() -> new RestaurantNotFoundException("restaurant not found"));
 
         restaurant.setRestaurantId(id);
-        restaurant.setRestaurant_name(request.getName());
-        restaurant.setRestaurant_address(request.getRestaurant_address());
-        restaurant.setRestaurant_image(restaurant.getRestaurant_image());
+        restaurant.setRestaurantName(request.getRestaurantName());
+        restaurant.setRestaurantAddress(request.getRestaurantAddress());
+        restaurant.setRestaurantImage(restaurant.getRestaurantImage());
 
         Restaurant updated = restaurantRepository.save(restaurant);
 
@@ -78,6 +79,7 @@ public class RestaurantService {
     }
 
     // Remove Restaurant
+    @Transactional
     public void deleteRestaurant(Long id){
 
         Restaurant restaurant = restaurantRepository.findById(id)
@@ -91,11 +93,11 @@ public class RestaurantService {
     public RestaurantResponse mapToResponse(Restaurant restaurant){
 
         return RestaurantResponse.builder()
-                .restaurant_id(restaurant.getRestaurantId())
-                .restaurant_name(restaurant.getRestaurant_name())
-                .restaurant_address(restaurant.getRestaurant_address())
-                .restaurant_rating(restaurant.getRestaurant_rating())
-                .restaurant_image(restaurant.getRestaurant_image())
+                .restaurantId(restaurant.getRestaurantId())
+                .restaurantName(restaurant.getRestaurantName())
+                .restaurantAddress(restaurant.getRestaurantAddress())
+                .restaurantRating(restaurant.getRestaurantRating())
+                .restaurantImage(restaurant.getRestaurantImage())
                 .build();
 
     }

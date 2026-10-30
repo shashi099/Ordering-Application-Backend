@@ -18,15 +18,15 @@ public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long menuId;
+    private Long menuItemId;
 
-    private String item_name;
+    private String foodName;
 
-    private String item_description;
+    private String description;
 
-    private Double item_price;
+    private Double price;
 
-    private Boolean item_available;
+    private Boolean available;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")  // foreign key in menu_items table

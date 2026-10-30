@@ -183,3 +183,21 @@ Each restaurants has menu items:
 * ✅ Entity Relationships
 * ✅ Database Design
 * ✅ Order Creation Flow Design
+
+# Order Placement Flow
+
+User Clicks Checkout => Get User => Read Cart Items => Validate Cart Not Empty => Calculate Total Amount => Create Order => Set Status = PLACED => Save Order => Clear Cart =>Return Success Response
+
+**Completed** ✅
+
+* ✅ OrderRepository
+* ✅ CreateOrderRequest DTO
+* ✅ OrderService
+* ✅ OrderServiceImpl
+* ✅ OrderController
+* ✅ POST /orders/place
+* ✅ Read Cart Data
+* ✅ Calculate Total
+* ✅ Create Order
+* ✅ Order Status = PLACED
+* ✅ Auto Cart Clear

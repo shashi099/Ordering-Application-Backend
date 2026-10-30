@@ -3,6 +3,7 @@ package com.shashi.foodOrdering.service;
 import com.shashi.foodOrdering.dto.*;
 import com.shashi.foodOrdering.entity.Cart;
 import com.shashi.foodOrdering.entity.MenuItem;
+import com.shashi.foodOrdering.entity.Restaurant;
 import com.shashi.foodOrdering.entity.User;
 import com.shashi.foodOrdering.exception.CartNotFoundException;
 import com.shashi.foodOrdering.exception.CartQuantityException;
@@ -39,15 +40,30 @@ public class CartService {
                 .orElseThrow(() ->
                         new MenuItemNotFoundException("Menu Item Not Found"));
 
-        Optional<Cart> existingCart =
-                cartRepository.findByUserAndMenuItem(
-                        user,
-                        menuItem
+        List<Cart> userCartItems =
+                cartRepository.findByUser(user);
+
+        // Check karo menuItem same restaurant se hai ya nahi
+        if(!userCartItems.isEmpty())
+        {
+            Restaurant existingRestaurant = userCartItems.get(0).getMenuItem().getRestaurant();
+
+            Restaurant newRestaurant = menuItem.getRestaurant();
+
+            if(!existingRestaurant.getRestaurantId().equals(newRestaurant.getRestaurantId()))
+            {
+                throw new RuntimeException(
+                        "Cart already contains items from another restaurant"
                 );
+            }
+        }
 
-        if(existingCart.isPresent()) {
+        if(!userCartItems.isEmpty()
+                &&
+                userCartItems.get(0).getMenuItem().equals(menuItem)
+        ) {
 
-            Cart cart = existingCart.get();
+            Cart cart = userCartItems.get(0);
 
             cart.setQuantity(
                     cart.getQuantity() + 1

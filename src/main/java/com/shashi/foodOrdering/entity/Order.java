@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="orders")
@@ -30,4 +31,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL
+    )
+    List<OrderItem> orderItemList;
 }

@@ -201,3 +201,29 @@ User Clicks Checkout => Get User => Read Cart Items => Validate Cart Not Empty =
 * ✅ Create Order
 * ✅ Order Status = PLACED
 * ✅ Auto Cart Clear
+
+# Order Item
+TO Track the **OrderItem for User** after deletion of the cart items
+**Who is can see the MYORDER section** 
+
+**Complete Flow**
+`Get User => Get Restaurant => Get Cart Items => Calculate Total => Create Order => Save Order => Create OrderItems => Save OrderItems => Clear Cart => Return Order Response`
+
+# Current Architecture
+
+```
+User
+ │
+ ├── Order #101
+ │      │
+ │      ├── Pizza x2
+ │      └── Burger x1
+ │
+ ├── Order #102
+ │      │
+ │      ├── Fries x1
+ │      └── Coke x2
+ │
+ └── Order #103
+
+```
